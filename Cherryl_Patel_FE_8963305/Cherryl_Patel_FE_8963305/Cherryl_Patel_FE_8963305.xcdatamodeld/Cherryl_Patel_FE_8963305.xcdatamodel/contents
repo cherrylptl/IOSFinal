@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23C64" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Direction" representedClassName="Direction" syncable="YES">
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="endPoint" optional="YES" attributeType="String"/>
+        <attribute name="startPoint" optional="YES" attributeType="String"/>
+        <attribute name="transportType" optional="YES" attributeType="String"/>
+        <relationship name="historyData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HistoryData" inverseName="direction" inverseEntity="HistoryData"/>
+    </entity>
+    <entity name="HistoryData" representedClassName="HistoryData" syncable="YES">
+        <attribute name="historyID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="direction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Direction" inverseName="historyData" inverseEntity="Direction"/>
+        <relationship name="news" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="News" inverseName="historyData" inverseEntity="News"/>
+        <relationship name="weatherData" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WeatherData" inverseName="historyData" inverseEntity="WeatherData"/>
+    </entity>
+    <entity name="News" representedClassName="News" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="cityName" optional="YES" attributeType="String"/>
+        <attribute name="discription" optional="YES" attributeType="String"/>
+        <attribute name="source" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="historyData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HistoryData" inverseName="news" inverseEntity="HistoryData"/>
+    </entity>
+    <entity name="WeatherData" representedClassName="WeatherData" syncable="YES">
+        <attribute name="cityName" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="humidity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="time" optional="YES" attributeType="String"/>
+        <attribute name="wind" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="historyData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HistoryData" inverseName="weatherData" inverseEntity="HistoryData"/>
+    </entity>
+</model>
